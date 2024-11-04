@@ -2,12 +2,16 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import dotenv from 'dotenv';
+import debug from 'debug';
 import dbConnection from './config/db.js';
 import { fileURLToPath } from 'url';
 import userRouter from './routes/userRoutes.js';
 import ownerRouter from './routes/ownerRoutes.js';
 import productRouter from './routes/productRoutes.js';
+
 dotenv.config();
+
+const mongooseDebug = debug('development:mongoose');
 
 const port = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
@@ -23,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
 dbConnection(MONGO_URI, () => {
+    mongooseDebug('Successfully connected to MongoDB');
     app.listen(port, () => {
         console.log(`Server is running on port ${port}`);
     });
