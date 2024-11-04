@@ -28,6 +28,6 @@ dbConnection(MONGO_URI, () => {
     });
 });
 
-app.use('users', userRouter);
-app.use('owners', ownerRouter);
-app.use('products', productRouter);
+app.use('/users', userRouter);
+app.use('/owners', ownerRouter);
+app.use('/products', productRouter);
