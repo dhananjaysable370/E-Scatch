@@ -1,10 +1,10 @@
+import bcrypt from 'bcrypt';
 import { ownerModel } from "../../models/ownerModel.js";
-import bcrypt from 'bcrypt'
 
 export const createOwner = async (req, res) => {
     const owners = await ownerModel.find();
     if (owners.length > 0) {
-        res.status(503).json({ success: false, message: "You don't have permission to create a new owner!" });
+        res.status(503).json({ success: false, message: "Owner already created!" });
     }
 
     const { fullname, email, password } = req.body;
