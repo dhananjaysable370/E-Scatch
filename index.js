@@ -4,6 +4,9 @@ import path from 'path';
 import dotenv from 'dotenv';
 import dbConnection from './config/db.js';
 import { fileURLToPath } from 'url';
+import userRouter from './routes/userRoutes.js';
+import ownerRouter from './routes/ownerRoutes.js';
+import productRouter from './routes/productRoutes.js';
 dotenv.config();
 
 const port = process.env.PORT || 3000;
@@ -25,3 +28,6 @@ dbConnection(MONGO_URI, () => {
     });
 });
 
+app.use('users', userRouter);
+app.use('owners', ownerRouter);
+app.use('products', productRouter);
