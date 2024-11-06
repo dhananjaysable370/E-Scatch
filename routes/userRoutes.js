@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { registerUser } from "../controllers/userControllers/user.js";
+import { loginUser, registerUser } from "../controllers/userControllers/user.js";
 import { registerValidation, loginValidation } from "../utils/validation.js";
 const userRouter = Router();
 userRouter.get('/', (req, res) => {
@@ -22,6 +22,7 @@ userRouter.post('/login', (req, res, next) => {
         return res.render('index', { error: error.details[0].message });
     } else {
         // login logic
+        loginUser(req, res, next);
     }
 })
 
