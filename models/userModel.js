@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    fullName: {
+    fullname: {
         type: String,
         trim: true,
         minLength: [5, "Full name length should be at least greater than 5 characters!"]
@@ -23,7 +23,6 @@ const userSchema = new mongoose.Schema({
         type: Array,
         default: []
     },
-    isadmin: Boolean,
     orders: {
         type: Array,
         default: []

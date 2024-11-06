@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 import userRouter from './routes/userRoutes.js';
 import ownerRouter from './routes/ownerRoutes.js';
 import productRouter from './routes/productRoutes.js';
+import router from './routes/index.js';
 
 dotenv.config();
 
@@ -21,10 +22,10 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 dbConnection(MONGO_URI, () => {
     mongooseDebug('Successfully connected to MongoDB');
@@ -33,6 +34,7 @@ dbConnection(MONGO_URI, () => {
     });
 });
 
+app.use('/', router);
 app.use('/users', userRouter);
 app.use('/owners', ownerRouter);
 app.use('/products', productRouter);
