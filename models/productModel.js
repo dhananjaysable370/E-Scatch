@@ -22,22 +22,20 @@ const productSchema = new Schema({
         default: 0,
         min: [0, 'Discount cannot be negative']
     },
-    colors: {
-        bgcolor: {
-            type: String,
-            required: [true, 'Background color is required'],
-            trim: true
-        },
-        panecolor: {
-            type: String,
-            required: [true, 'Pane color is required'],
-            trim: true
-        },
-        textcolor: {
-            type: String,
-            required: [true, 'Text color is required'],
-            trim: true
-        }
+    bgcolor: {
+        type: String,
+        required: [true, 'Background color is required'],
+        trim: true
+    },
+    panecolor: {
+        type: String,
+        required: [true, 'Pane color is required'],
+        trim: true
+    },
+    textcolor: {
+        type: String,
+        required: [true, 'Text color is required'],
+        trim: true
     }
 }, { timestamps: true });
 
